@@ -5,9 +5,9 @@ from webium import BasePage, Find
 from selenium.webdriver.remote.webelement import WebElement
 from webium.driver import get_driver
 
-# Webium
+# Webiumm
 
-class Elements (WebElement):
+class Elements(WebElement):
     lypa = Find(by=By.CLASS_NAME, value='mos-layout-icon-search_black')
     text_input = Find(by=By.CLASS_NAME, value='tt-input')
 
