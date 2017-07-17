@@ -19,10 +19,11 @@ class one_mos(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         webium.driver._driver_instance = self.driver
-
-    def test_serach(self):
         driver = self.driver
         driver.maximize_window()
+
+    def test_serach(self):
+
         main_page = MainPage()
         main_page.open()
         time.sleep(1)

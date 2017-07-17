@@ -37,17 +37,18 @@ class two_mos(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         webium.driver._driver_instance = self.driver
-
-    def test_serach(self):
         driver = self.driver
         driver.maximize_window()
+
+    def test_serach(self):
+
         page = MainPage()
         page.open()
         page.button()
         page.search.text_input.send_keys(u"Собянин")
         result_page = page.get_result()
-        time.sleep(2)
-        print(result_page.is_element_present('widgert'))
+        time.sleep(3)
+        print(result_page.is_element_present('widget'))
 
     def tearDown(self):
         self.driver.close()
