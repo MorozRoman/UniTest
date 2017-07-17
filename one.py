@@ -1,9 +1,10 @@
 import unittest
+import webium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from webium import BasePage, Finds
-from webium.driver import get_driver
+import time
 
 # Webium
 class MainPage(BasePage):
@@ -13,12 +14,24 @@ class MainPage(BasePage):
         super(MainPage, self).__init__(url="https://www.mos.ru/")
 
 
+class one_mos(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        webium.driver._driver_instance = self.driver
+
+    def test_serach(self):
+        driver = self.driver
+        driver.maximize_window()
+        main_page = MainPage()
+        main_page.open()
+        time.sleep(1)
+        self.assertEqual(len(main_page.services), 10)
+
+    def tearDown(self):
+        self.driver.close()
+
 if __name__ == "__main__":
-    main_page = MainPage()
-    main_page.open()
-    print (len(main_page.services))
-    get_driver().quit()
-    # self.assertEqual(len(main_page.services), 10)
     unittest.main()
 
 # UnitTest
