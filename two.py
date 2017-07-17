@@ -1,10 +1,12 @@
 import unittest
 import webium
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webium import BasePage, Find
 from selenium.webdriver.remote.webelement import WebElement
-import time
+from webium.wait import wait
+
 
 
 # Webium
@@ -32,7 +34,7 @@ class MainPage(BasePage):
 class SearchResultPage(BasePage):
     widget = Find(by=By.CLASS_NAME, value="wdg-mayor")
 
-class two_mos(unittest.TestCase):
+class MosSearch(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
@@ -40,15 +42,14 @@ class two_mos(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
 
-    def test_serach(self):
-
+    def test_search(self):
         page = MainPage()
         page.open()
         page.button()
         page.search.text_input.send_keys(u"Собянин")
         result_page = page.get_result()
-        time.sleep(3)
-        print(result_page.is_element_present('widget'))
+        wait(lambda: result_page.is_element_present('widget'), timeout_seconds=2)
+
 
     def tearDown(self):
         self.driver.close()
