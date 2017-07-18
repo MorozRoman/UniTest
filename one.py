@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from webium import BasePage, Finds
-import time
 
 # Webium
 class MainPage(BasePage):
@@ -14,7 +13,7 @@ class MainPage(BasePage):
         super(MainPage, self).__init__(url="https://www.mos.ru/")
 
 
-class one_mos(unittest.TestCase):
+class ServicesPopular(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
@@ -22,11 +21,9 @@ class one_mos(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
 
-    def test_serach(self):
-
+    def test_search(self):
         main_page = MainPage()
         main_page.open()
-        time.sleep(1)
         self.assertEqual(len(main_page.services), 10)
 
     def tearDown(self):
